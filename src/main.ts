@@ -14,16 +14,22 @@ let ctx = canvas.getContext("2d");
 // Create points
 let p1 = new Point(100, 100);
 let p2 = new Point(200, 200);
-let p3 = new Point(500, 200);
 
 // Max distance between points
-const maxDistance = window.innerWidth / 5;
+const maxDistance = window.innerWidth / 4;
 
 // Create the graph, add points and render it.
-let g = new Graph([p1, p2, p3], maxDistance);
+let g = new Graph([p1, p2], maxDistance);
 
 // Add new point by clicking on the window
 window.addEventListener('click', () => {
+    let randX = Math.floor(Math.random() * window.innerWidth);
+    let randY = Math.floor(Math.random() * window.innerHeight);
+    g.addPoint(new Point(randX, randY));
+})
+
+// Add new point by touching on the window
+window.addEventListener('touchend', () => {
     let randX = Math.floor(Math.random() * window.innerWidth);
     let randY = Math.floor(Math.random() * window.innerHeight);
     g.addPoint(new Point(randX, randY));
@@ -47,3 +53,5 @@ function animate() {
 }
 
 animate();
+
+alert('Touch or click on the window to generate points!');
