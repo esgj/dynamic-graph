@@ -5,6 +5,7 @@ export default class Graph {
     points: Point[] = [];
     segments: Segment[] = [];
     maxSegmentDistance = Number.MAX_SAFE_INTEGER;
+    gravity = false;
     
     constructor(points: Point[], maxSegmentDistance?: number) {
         this.points = points;
@@ -12,6 +13,10 @@ export default class Graph {
         if (maxSegmentDistance) {
             this.maxSegmentDistance = maxSegmentDistance;
         }
+    }
+
+    toggleGravity() {
+        this.gravity = !this.gravity;
     }
 
     addPoint(point: Point) {
@@ -23,6 +28,8 @@ export default class Graph {
             this.segments.push(seg);
         }
     }
+
+
 
     generateSegments() {
         this.removeSegments();
@@ -65,7 +72,7 @@ export default class Graph {
         }
 
         for (const seg of this.segments) {
-            seg.draw(ctx);
+            seg.draw(ctx, { gravity: !this.gravity });
         }
     }
 }

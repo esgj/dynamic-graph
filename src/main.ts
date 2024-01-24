@@ -11,15 +11,14 @@ document.querySelector('#app')?.appendChild(canvas);
 
 let ctx = canvas.getContext("2d");
 
-// Create points
-let p1 = new Point(100, 100);
-let p2 = new Point(200, 200);
+// Create one point starting in the middle of the screen.
+let p1 = new Point(Math.floor(window.innerWidth / 2), Math.floor(window.innerHeight / 2));
 
 // Max distance between points
-const maxDistance = window.innerWidth / 4;
+export const maxDistance = window.innerWidth / 3;
 
 // Create the graph, add points and render it.
-let g = new Graph([p1, p2], maxDistance);
+let g = new Graph([p1], maxDistance);
 
 // Add new point by clicking on the window
 window.addEventListener('click', () => {
@@ -53,5 +52,3 @@ function animate() {
 }
 
 animate();
-
-alert('Touch or click on the window to generate points!');
